@@ -1,0 +1,63 @@
+{
+  "bubble sort": {
+    "java": "public void bubbleSort(int[] arr) {\n  int n = arr.length;\n  for (int i = 0; i < n-1; i++) {\n    for (int j = 0; j < n-i-1; j++) {\n      if (arr[j] > arr[j+1]) {\n        int temp = arr[j];\n        arr[j] = arr[j+1];\n        arr[j+1] = temp;\n      }\n    }\n  }\n}",
+    "python": "def bubble_sort(arr):\n  n = len(arr)\n  for i in range(n-1):\n    for j in range(n-i-1):\n      if arr[j] > arr[j+1]:\n        arr[j], arr[j+1] = arr[j+1], arr[j]",
+    "cpp": "void bubbleSort(vector<int>& arr) {\n  int n = arr.size();\n  for (int i = 0; i < n-1; i++) {\n    for (int j = 0; j < n-i-1; j++) {\n      if (arr[j] > arr[j+1]) {\n        swap(arr[j], arr[j+1]);\n      }\n    }\n  }\n}",
+    "explanation": "Bubble Sort repeatedly swaps adjacent elements if they are in the wrong order, until the list is sorted."
+  },
+  "linear search": {
+    "java": "public int linearSearch(int[] arr, int x) {\n  for (int i = 0; i < arr.length; i++) {\n    if (arr[i] == x) return i;\n  }\n  return -1;\n}",
+    "python": "def linear_search(arr, x):\n  for i in range(len(arr)):\n    if arr[i] == x:\n      return i\n  return -1",
+    "cpp": "int linearSearch(vector<int>& arr, int x) {\n  for (int i = 0; i < arr.size(); i++) {\n    if (arr[i] == x) return i;\n  }\n  return -1;\n}",
+    "explanation": "Linear Search checks each element one by one until it finds the target value."
+  },
+  "binary search": {
+    "java": "public int binarySearch(int[] arr, int x) {\n  int left = 0, right = arr.length - 1;\n  while (left <= right) {\n    int mid = left + (right - left)/2;\n    if (arr[mid] == x) return mid;\n    if (arr[mid] < x) left = mid + 1;\n    else right = mid - 1;\n  }\n  return -1;\n}",
+    "python": "def binary_search(arr, x):\n  left, right = 0, len(arr)-1\n  while left <= right:\n    mid = (left+right)//2\n    if arr[mid] == x:\n      return mid\n    elif arr[mid] < x:\n      left = mid + 1\n    else:\n      right = mid - 1\n  return -1",
+    "cpp": "int binarySearch(vector<int>& arr, int x) {\n  int left = 0, right = arr.size()-1;\n  while (left <= right) {\n    int mid = left + (right - left)/2;\n    if (arr[mid] == x) return mid;\n    if (arr[mid] < x) left = mid + 1;\n    else right = mid - 1;\n  }\n  return -1;\n}",
+    "explanation": "Binary Search finds an element in a sorted array by repeatedly dividing the search interval in half."
+  },
+  "selection sort": {
+    "java": "public void selectionSort(int[] arr) {\n  int n = arr.length;\n  for (int i = 0; i < n-1; i++) {\n    int minIdx = i;\n    for (int j = i+1; j < n; j++) {\n      if (arr[j] < arr[minIdx]) minIdx = j;\n    }\n    int temp = arr[minIdx]; arr[minIdx] = arr[i]; arr[i] = temp;\n  }\n}",
+    "python": "def selection_sort(arr):\n  for i in range(len(arr)):\n    min_idx = i\n    for j in range(i+1, len(arr)):\n      if arr[j] < arr[min_idx]:\n        min_idx = j\n    arr[i], arr[min_idx] = arr[min_idx], arr[i]",
+    "cpp": "void selectionSort(vector<int>& arr) {\n  int n = arr.size();\n  for (int i = 0; i < n-1; i++) {\n    int minIdx = i;\n    for (int j = i+1; j < n; j++) {\n      if (arr[j] < arr[minIdx]) minIdx = j;\n    }\n    swap(arr[i], arr[minIdx]);\n  }\n}",
+    "explanation": "Selection Sort repeatedly selects the minimum element from the unsorted portion and places it at the beginning."
+  },
+  "insertion sort": {
+    "java": "public void insertionSort(int[] arr) {\n  for (int i = 1; i < arr.length; i++) {\n    int key = arr[i];\n    int j = i-1;\n    while (j >= 0 && arr[j] > key) {\n      arr[j+1] = arr[j];\n      j--;\n    }\n    arr[j+1] = key;\n  }\n}",
+    "python": "def insertion_sort(arr):\n  for i in range(1, len(arr)):\n    key = arr[i]\n    j = i-1\n    while j >= 0 and arr[j] > key:\n      arr[j+1] = arr[j]\n      j -= 1\n    arr[j+1] = key",
+    "cpp": "void insertionSort(vector<int>& arr) {\n  for (int i = 1; i < arr.size(); i++) {\n    int key = arr[i];\n    int j = i-1;\n    while (j >= 0 && arr[j] > key) {\n      arr[j+1] = arr[j];\n      j--;\n    }\n    arr[j+1] = key;\n  }\n}",
+    "explanation": "Insertion Sort builds the sorted array one element at a time by inserting elements in their correct position."
+  },
+  "merge sort": {
+    "java": "public void mergeSort(int[] arr, int l, int r) {\n  if (l < r) {\n    int m = (l+r)/2;\n    mergeSort(arr, l, m);\n    mergeSort(arr, m+1, r);\n    merge(arr, l, m, r);\n  }\n}\nprivate void merge(int[] arr, int l, int m, int r) {\n  int n1 = m-l+1, n2 = r-m;\n  int[] L = new int[n1]; int[] R = new int[n2];\n  for(int i=0;i<n1;i++) L[i]=arr[l+i];\n  for(int i=0;i<n2;i++) R[i]=arr[m+1+i];\n  int i=0,j=0,k=l;\n  while(i<n1 && j<n2){\n    if(L[i]<=R[j]) arr[k++]=L[i++];\n    else arr[k++]=R[j++];\n  }\n  while(i<n1) arr[k++]=L[i++];\n  while(j<n2) arr[k++]=R[j++];\n}",
+    "python": "def merge_sort(arr):\n  if len(arr) > 1:\n    mid = len(arr)//2\n    L = arr[:mid]\n    R = arr[mid:]\n    merge_sort(L)\n    merge_sort(R)\n    i=j=k=0\n    while i<len(L) and j<len(R):\n      if L[i]<=R[j]: arr[k]=L[i]; i+=1\n      else: arr[k]=R[j]; j+=1\n      k+=1\n    while i<len(L): arr[k]=L[i]; i+=1; k+=1\n    while j<len(R): arr[k]=R[j]; j+=1; k+=1",
+    "cpp": "void merge(vector<int>& arr, int l, int m, int r) {\n  int n1=m-l+1,n2=r-m;\n  vector<int> L(n1), R(n2);\n  for(int i=0;i<n1;i++) L[i]=arr[l+i];\n  for(int i=0;i<n2;i++) R[i]=arr[m+1+i];\n  int i=0,j=0,k=l;\n  while(i<n1 && j<n2){ arr[k++] = (L[i]<=R[j])?L[i++]:R[j++]; }\n  while(i<n1) arr[k++] = L[i++];\n  while(j<n2) arr[k++] = R[j++];\n}\nvoid mergeSort(vector<int>& arr, int l, int r){\n  if(l<r){ int m=(l+r)/2; mergeSort(arr,l,m); mergeSort(arr,m+1,r); merge(arr,l,m,r); }\n}",
+    "explanation": "Merge Sort divides the array into halves, sorts each half recursively, and merges them back together."
+  },
+  "quick sort": {
+    "java": "public void quickSort(int[] arr, int low, int high) {\n  if (low < high) {\n    int pi = partition(arr, low, high);\n    quickSort(arr, low, pi-1);\n    quickSort(arr, pi+1, high);\n  }\n}\nprivate int partition(int[] arr, int low, int high) {\n  int pivot = arr[high];\n  int i = low-1;\n  for(int j=low;j<high;j++){\n    if(arr[j]<=pivot){ i++; int temp=arr[i]; arr[i]=arr[j]; arr[j]=temp;}\n  }\n  int temp=arr[i+1]; arr[i+1]=arr[high]; arr[high]=temp;\n  return i+1;\n}",
+    "python": "def quick_sort(arr):\n  if len(arr)<=1: return arr\n  pivot=arr[len(arr)//2]\n  left=[x for x in arr if x<pivot]\n  middle=[x for x in arr if x==pivot]\n  right=[x for x in arr if x>pivot]\n  return quick_sort(left)+middle+quick_sort(right)",
+    "cpp": "int partition(vector<int>& arr,int low,int high){ int pivot=arr[high]; int i=low-1; for(int j=low;j<high;j++){ if(arr[j]<=pivot){ i++; swap(arr[i],arr[j]); } } swap(arr[i+1],arr[high]); return i+1; }\nvoid quickSort(vector<int>& arr,int low,int high){ if(low<high){ int pi=partition(arr,low,high); quickSort(arr,low,pi-1); quickSort(arr,pi+1,high); } }",
+    "explanation": "Quick Sort picks a pivot, partitions the array around it, and recursively sorts the partitions."
+  },
+  "factorial": {
+    "java": "public int factorial(int n) {\n  if(n==0) return 1;\n  return n*factorial(n-1);\n}",
+    "python": "def factorial(n):\n  if n==0: return 1\n  return n*factorial(n-1)",
+    "cpp": "int factorial(int n){ if(n==0) return 1; return n*factorial(n-1); }",
+    "explanation": "Factorial multiplies all positive integers up to n recursively."
+  },
+  "fibonacci": {
+    "java": "public int fibonacci(int n) {\n  if(n<=1) return n;\n  return fibonacci(n-1)+fibonacci(n-2);\n}",
+    "python": "def fibonacci(n):\n  if n<=1: return n\n  return fibonacci(n-1)+fibonacci(n-2)",
+    "cpp": "int fibonacci(int n){ if(n<=1) return n; return fibonacci(n-1)+fibonacci(n-2); }",
+    "explanation": "Fibonacci sequence returns numbers where each number is the sum of the previous two."
+  },
+  "stack using array": {
+    "java": "class Stack {\n  private int[] arr;\n  private int top;\n  private int capacity;\n  Stack(int size){ arr=new int[size]; top=-1; capacity=size;}\n  void push(int x){ if(top==capacity-1) return; arr[++top]=x; }\n  int pop(){ if(top==-1) return -1; return arr[top--]; }\n}",
+    "python": "class Stack:\n  def __init__(self, size): self.stack=[]; self.size=size\n  def push(self,x):\n    if len(self.stack)<self.size: self.stack.append(x)\n  def pop(self):\n    return self.stack.pop() if self.stack else None",
+    "cpp": "class Stack{\n  int* arr; int top; int capacity;\npublic:\n  Stack(int size){ arr=new int[size]; top=-1; capacity=size;}\n  void push(int x){ if(top==capacity-1) return; arr[++top]=x;}\n  int pop(){ if(top==-1) return -1; return arr[top--];}\n};",
+    "explanation": "Stack is a LIFO structure; push adds an element, pop removes the top element."
+  }
+}
+

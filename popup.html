@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Algorithm Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Algorithm Generator By Vinod</h2>
+
+  <input type="text" id="prompt" placeholder="Type algorithm name or prompt">
+  
+  <select id="language">
+    <option value="java">Java</option>
+    <option value="python">Python</option>
+    <option value="cpp">C++</option>
+  </select>
+
+  <button id="generateBtn">Generate</button>
+
+  <div id="loading" style="display:none;">⏳ Generating...</div>
+  <pre id="output"></pre>
+  <button id="copyBtn">Copy to Clipboard</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Algorithm Generator By Vinod",
+  "version": "1.0",
+  "description": "This extension is intended for learning and practice purposes only. Please do not use it to cheat in interviews, exams, or assessments. Always try to understand the algorithms yourself",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": ["storage", "clipboardWrite"]
+}
